@@ -1,0 +1,47 @@
+name: Build APK
+on:
+  workflow_dispatch:
+    inputs:
+      project_path:
+        description: "Path to Flutter/Android project in repo"
+        required: true
+        type: string
+      branch:
+        description: "Branch to build from"
+        required: false
+        default: "main"
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
+      
+      - uses: actions/setup-javaVù‘
+        with:
+          distribution: "temurin"
+          java-version: "17"
+      
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.3"
+          channel: "stable"
+      
+      - name: Get dependencies
+        working-directory: ${{ github.event.inputs.project_path }}
+        run: flutter pub get
+      
+      - name: Build APK
+        working-directory: ${{ github.event.inputs.project_path }}
+        run: flutter build apk --release
+      
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release.apk
+          path: ${{ github.event.inputs.project_path }}/build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 7
