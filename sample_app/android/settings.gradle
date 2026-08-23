@@ -3,6 +3,7 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+        maven { url "${System.env.FLUTTER_ROOT}/packages/flutter_tools/gradle/maven" }
     }
     plugins {
         id 'dev.flutter.flutter-gradle-plugin' version '3.24.3'
