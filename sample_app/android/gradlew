@@ -21,6 +21,9 @@ DEFAULT_JVM_OPTS="-Xmx64m -Xms64m"
 # Use the maximum available, or set MAX_FD != -1 to use that value.
 MAX_FD="maximum"
 
+# Determine the home directory of the Gradle wrapper script.
+APP_HOME=$(cd "$(dirname "$0")" && pwd)
+
 warn () {
     echo "$*"
 }
