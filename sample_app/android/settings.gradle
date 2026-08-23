@@ -1,1 +1,12 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    plugins {
+        id 'dev.flutter.flutter-gradle-plugin' version '3.24.3'
+    }
+}
+
 include ':app'
