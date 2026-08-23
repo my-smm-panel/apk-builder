@@ -21,7 +21,7 @@ jobs:
         with:
           ref: ${{ github.event.inputs.branch }}
       
-      - uses: actions/setup-javaVù‘
+      - uses: actions/setup-java@v4
         with:
           distribution: "temurin"
           java-version: "17"
